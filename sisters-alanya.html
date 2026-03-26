@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sisters Alanya — Coffee & Wine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F1;
+    --warm-white: #FFFDF9;
+    --espresso: #2C1810;
+    --espresso-light: #4A3228;
+    --terracotta: #C4704B;
+    --terracotta-soft: #D4956F;
+    --sage: #8B9E7E;
+    --sage-light: #C5D1BC;
+    --sand: #E8DDD3;
+    --sand-light: #F0E9E1;
+    --wine: #7B3B4A;
+    --gold: #C9A96E;
+    --text: #3A2A20;
+    --text-light: #8A7A6E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(196, 112, 75, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(139, 158, 126, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--sand-light);
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 2rem;
+    animation: fadeDown 0.8s ease;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1.05;
+    color: var(--espresso);
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    animation: fadeDown 0.8s ease 0.1s both;
+  }
+
+  .hero h1 em {
+    color: var(--terracotta);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    font-weight: 300;
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+    animation: fadeDown 0.8s ease 0.2s both;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    background: var(--espresso);
+    color: var(--cream);
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    animation: fadeDown 0.8s ease 0.3s both;
+  }
+
+  .hero-cta:hover {
+    background: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
+  .hero-cta svg { transition: transform 0.3s ease; }
+  .hero-cta:hover svg { transform: translateY(3px); }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 2rem;
+    color: var(--sand);
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    flex: 1;
+    max-width: 120px;
+    background: var(--sand);
+  }
+
+  /* ── MENU SECTION ── */
+  .menu-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .menu-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--espresso);
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 2.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--cream);
+    padding: 1rem 0;
+  }
+
+  .tab-btn {
+    padding: 0.55rem 1.25rem;
+    border: 1.5px solid var(--sand);
+    background: transparent;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .tab-btn:hover {
+    border-color: var(--terracotta-soft);
+    color: var(--terracotta);
+  }
+
+  .tab-btn.active {
+    background: var(--espresso);
+    border-color: var(--espresso);
+    color: var(--cream);
+  }
+
+  /* ── MENU PANELS ── */
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; animation: fadeIn 0.4s ease; }
+
+  .menu-category {
+    margin-bottom: 2.5rem;
+  }
+
+  .menu-category h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: var(--espresso);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--sand);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .menu-category h3 .icon {
+    font-size: 1.1rem;
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 1px dotted var(--sand-light);
+    transition: background 0.2s ease;
+  }
+
+  .menu-item:last-child { border-bottom: none; }
+
+  .menu-item:hover {
+    background: rgba(196, 112, 75, 0.03);
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    margin-left: -0.4rem;
+    margin-right: -0.4rem;
+    border-radius: 6px;
+  }
+
+  .item-name {
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .item-note {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  .item-dots {
+    flex: 1;
+    margin: 0 0.75rem;
+    border-bottom: 1px dotted var(--sand);
+    min-width: 2rem;
+    align-self: center;
+    margin-bottom: 4px;
+  }
+
+  .item-price {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--terracotta);
+    white-space: nowrap;
+  }
+
+  /* ── ADD-ONS BANNER ── */
+  .addons-banner {
+    background: var(--sand-light);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .addons-banner h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    color: var(--espresso);
+  }
+
+  .addons-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+
+  .addons-row span { white-space: nowrap; }
+
+  /* ── RED BULL GRID ── */
+  .redbull-showcase {
+    margin-top: 0.5rem;
+  }
+
+  .redbull-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .redbull-card {
+    background: var(--warm-white);
+    border: 1px solid var(--sand);
+    border-radius: 10px;
+    padding: 0.75rem 0.5rem 0.6rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .redbull-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(44, 24, 16, 0.08);
+    border-color: var(--terracotta-soft);
+  }
+
+  .redbull-card img {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 0.4rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+  }
+
+  .redbull-card .rb-name {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 0.2rem;
+  }
+
+  .redbull-card .rb-price {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--terracotta);
+  }
+
+  .redbull-all-price {
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  @media (max-width: 600px) {
+    .redbull-grid {
+      grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+      gap: 0.5rem;
+    }
+    .redbull-card img { height: 52px; }
+    .redbull-card .rb-name { font-size: 0.65rem; }
+  }
+
+  /* ── INFO SECTION ── */
+  .info-section {
+    background: var(--espresso);
+    color: var(--sand-light);
+    padding: 4rem 2rem;
+  }
+
+  .info-block h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .info-block p, .info-block a {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--sand);
+    font-weight: 300;
+  }
+
+  .info-block a {
+    color: var(--terracotta-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .info-block a:hover { color: var(--gold); }
+
+  .instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    border: 1.5px solid var(--espresso-light);
+    border-radius: 100px;
+    color: var(--cream) !important;
+    font-weight: 400 !important;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease;
+  }
+
+  .instagram-link:hover {
+    border-color: var(--terracotta-soft);
+    background: var(--espresso-light);
+  }
+
+  /* ── HOURS TABLE ── */
+  .hours-table {
+    width: 100%;
+    font-size: 0.9rem;
+    color: var(--sand);
+    font-weight: 300;
+    border-collapse: collapse;
+  }
+
+  .hours-table tr td {
+    padding: 0.25rem 0;
+  }
+
+  .hours-table tr td:first-child {
+    font-weight: 400;
+    color: var(--cream);
+    padding-right: 1rem;
+    white-space: nowrap;
+  }
+
+  .hours-table tr.today td {
+    color: var(--terracotta-soft);
+  }
+
+  .hours-table tr.today td:first-child {
+    color: var(--terracotta-soft);
+    font-weight: 500;
+  }
+
+  /* ── VIBE TAGS ── */
+  .vibe-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .vibe-tag {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    background: var(--espresso-light);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    color: var(--sand);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  /* ── MAP LINK ── */
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding: 0.45rem 1rem;
+    border: 1.5px solid var(--espresso-light);
+    border-radius: 100px;
+    color: var(--cream) !important;
+    font-weight: 400 !important;
+    font-size: 0.85rem !important;
+    transition: all 0.3s ease;
+  }
+
+  .map-link:hover {
+    border-color: var(--terracotta-soft);
+    background: var(--espresso-light);
+  }
+
+  .info-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+  }
+  footer {
+    background: var(--espresso);
+    border-top: 1px solid var(--espresso-light);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .hero { min-height: 55vh; padding: 3rem 1.5rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .tabs { gap: 0.3rem; padding: 0.75rem 0; }
+    .tab-btn { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
+    .menu-section { padding: 2rem 1.25rem 4rem; }
+    .menu-section h2 { font-size: 2rem; }
+    .info-grid { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-badge">☕ Alanya, Turkey</div>
+  <h1>Sisters'<br><em>Coffee & Wine</em></h1>
+  <p class="hero-sub">Good coffee, honest food, cold beer — and sisters who actually like each other.</p>
+  <a href="#menu" class="hero-cta">
+    See the menu
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<div class="section-divider">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1"/></svg>
+</div>
+
+<!-- ═══ MENU ═══ -->
+<section class="menu-section" id="menu">
+  <h2>Our Menu</h2>
+  <p class="menu-subtitle">Prices in Turkish Lira (₺)</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="coffee">Coffee</button>
+    <button class="tab-btn" data-tab="eats">Eats</button>
+    <button class="tab-btn" data-tab="drinks">Wine & Cocktails</button>
+    <button class="tab-btn" data-tab="beer">Beer</button>
+    <button class="tab-btn" data-tab="extras">Extras</button>
+  </div>
+
+  <!-- COFFEE -->
+  <div class="menu-panel active" id="coffee">
+    <div class="menu-category">
+      <h3><span class="icon">☕</span> Coffee</h3>
+      <div class="menu-item"><span class="item-name">Espresso</span><span class="item-dots"></span><span class="item-price">₺110</span></div>
+      <div class="menu-item"><span class="item-name">Double Espresso</span><span class="item-dots"></span><span class="item-price">₺150</span></div>
+      <div class="menu-item"><span class="item-name">Americano</span><span class="item-dots"></span><span class="item-price">₺150</span></div>
+      <div class="menu-item"><span class="item-name">Cortado</span><span class="item-dots"></span><span class="item-price">₺170</span></div>
+      <div class="menu-item"><span class="item-name">Latte</span><span class="item-dots"></span><span class="item-price">₺170</span></div>
+      <div class="menu-item"><span class="item-name">Cappuccino</span><span class="item-dots"></span><span class="item-price">₺170</span></div>
+      <div class="menu-item"><span class="item-name">Flat White</span><span class="item-dots"></span><span class="item-price">₺170</span></div>
+      <div class="menu-item"><span class="item-name">Latte Macchiato</span><span class="item-dots"></span><span class="item-price">₺170</span></div>
+      <div class="menu-item"><span class="item-name">Espresso Macchiato</span><span class="item-dots"></span><span class="item-price">₺150</span></div>
+      <div class="menu-item"><span class="item-name">Dark Chocolate Mocha <span class="item-note">(480ml)</span></span><span class="item-dots"></span><span class="item-price">₺200</span></div>
+      <div class="menu-item"><span class="item-name">French Press <span class="item-note">(500ml)</span></span><span class="item-dots"></span><span class="item-price">₺170</span></div>
+      <div class="menu-item"><span class="item-name">Filter Coffee</span><span class="item-dots"></span><span class="item-price">₺135</span></div>
+      <div class="menu-item"><span class="item-name">Turkish Coffee</span><span class="item-dots"></span><span class="item-price">₺110</span></div>
+    </div>
+
+    <div class="addons-banner">
+      <h4>Add-ons</h4>
+      <div class="addons-row">
+        <span>Syrup (Caramel, Hazelnut, Chocolate) · ₺40</span>
+        <span>Extra Milk · ₺30</span>
+        <span>Lactose-Free Milk · ₺30</span>
+        <span>Vegan Milk · ₺70</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EATS -->
+  <div class="menu-panel" id="eats">
+    <div class="menu-category">
+      <h3><span class="icon">🍽</span> Eats</h3>
+      <div class="menu-item"><span class="item-name">Omelette</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Sandwich with Vegetables</span><span class="item-dots"></span><span class="item-price">₺310</span></div>
+      <div class="menu-item"><span class="item-name">Sandwich with Cheese</span><span class="item-dots"></span><span class="item-price">₺340</span></div>
+      <div class="menu-item"><span class="item-name">Sandwich with Tuna Fish</span><span class="item-dots"></span><span class="item-price">₺360</span></div>
+      <div class="menu-item"><span class="item-name">Sandwich with Beef</span><span class="item-dots"></span><span class="item-price">₺380</span></div>
+      <div class="menu-item"><span class="item-name">Toasted Sandwich</span><span class="item-dots"></span><span class="item-price">₺310</span></div>
+      <div class="menu-item"><span class="item-name">French Fries</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Beer Bites</span><span class="item-dots"></span><span class="item-price">₺310</span></div>
+      <div class="menu-item"><span class="item-name">Turkish Ravioli</span><span class="item-dots"></span><span class="item-price">₺350</span></div>
+      <div class="menu-item"><span class="item-name">Vegetable Salad</span><span class="item-dots"></span><span class="item-price">₺290</span></div>
+      <div class="menu-item"><span class="item-name">Tuna Fish Salad</span><span class="item-dots"></span><span class="item-price">₺330</span></div>
+      <div class="menu-item"><span class="item-name">Fruit Salad</span><span class="item-dots"></span><span class="item-price">₺350</span></div>
+      <div class="menu-item"><span class="item-name">OH MY DOG Hotdog 🌭</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Wine Plate</span><span class="item-dots"></span><span class="item-price">₺650</span></div>
+    </div>
+  </div>
+
+  <!-- WINE & COCKTAILS -->
+  <div class="menu-panel" id="drinks">
+    <div class="menu-category">
+      <h3><span class="icon">🍷</span> Wine</h3>
+      <div class="menu-item"><span class="item-name">White Wine</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Rosé Wine</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Red Wine</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Champagne</span><span class="item-dots"></span><span class="item-price">₺2000</span></div>
+    </div>
+    <div class="menu-category">
+      <h3><span class="icon">🥃</span> Spirits</h3>
+      <div class="menu-item"><span class="item-name">Vodka</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Baileys</span><span class="item-dots"></span><span class="item-price">₺300</span></div>
+      <div class="menu-item"><span class="item-name">Jägermeister</span><span class="item-dots"></span><span class="item-price">₺300</span></div>
+      <div class="menu-item"><span class="item-name">Gin</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Tequila</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Rakı</span><span class="item-dots"></span><span class="item-price">₺200</span></div>
+      <div class="menu-item"><span class="item-name">Whiskey</span><span class="item-dots"></span><span class="item-price">₺380</span></div>
+    </div>
+    <div class="menu-category">
+      <h3><span class="icon">🍹</span> Cocktails</h3>
+      <div class="menu-item"><span class="item-name">Sisters' Cocktail</span><span class="item-dots"></span><span class="item-price">₺480</span></div>
+      <div class="menu-item"><span class="item-name">Red Margarita</span><span class="item-dots"></span><span class="item-price">₺350</span></div>
+    </div>
+  </div>
+
+  <!-- BEER -->
+  <div class="menu-panel" id="beer">
+    <div class="menu-category">
+      <h3><span class="icon">🍺</span> Beer</h3>
+      <div class="menu-item"><span class="item-name">Efes / Efes Malt</span><span class="item-dots"></span><span class="item-price">₺190</span></div>
+      <div class="menu-item"><span class="item-name">Tuborg Amber / Gold / Unfiltered</span><span class="item-dots"></span><span class="item-price">₺190</span></div>
+      <div class="menu-item"><span class="item-name">Bomonti Unfiltered / Carlsberg / Carlsberg Luna</span><span class="item-dots"></span><span class="item-price">₺200</span></div>
+      <div class="menu-item"><span class="item-name">Bud</span><span class="item-dots"></span><span class="item-price">₺200</span></div>
+      <div class="menu-item"><span class="item-name">Blanc / Becks / Sol / Corona</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Miller</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Desperados</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Weihenstephaner</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Collection Beers</span><span class="item-dots"></span><span class="item-price">₺300</span></div>
+      <div class="menu-item"><span class="item-name">Guinness</span><span class="item-dots"></span><span class="item-price">₺300</span></div>
+      <div class="menu-item"><span class="item-name">Local Craft Beers</span><span class="item-dots"></span><span class="item-price">₺350</span></div>
+    </div>
+  </div>
+
+  <!-- EXTRAS -->
+  <div class="menu-panel" id="extras">
+    <div class="menu-category">
+      <h3><span class="icon">🫖</span> Packed Products</h3>
+      <div class="menu-item"><span class="item-name">Illy Coffee <span class="item-note">(250g)</span></span><span class="item-dots"></span><span class="item-price">₺675</span></div>
+      <div class="menu-item"><span class="item-name">Illy Coffee <span class="item-note">(125g)</span></span><span class="item-dots"></span><span class="item-price">₺550</span></div>
+      <div class="menu-item"><span class="item-name">Mixed Herbal Tea</span><span class="item-dots"></span><span class="item-price">₺250</span></div>
+      <div class="menu-item"><span class="item-name">Single Herbal Tea</span><span class="item-dots"></span><span class="item-price">₺200</span></div>
+    </div>
+    <div class="menu-category redbull-showcase">
+      <h3><span class="icon">⚡</span> Red Bull Selection</h3>
+      <div class="redbull-grid">
+        <div class="redbull-card">
+          <img src="https://sistersalanya.wordpress.com/wp-content/uploads/2025/07/img-20250724-wa0035.jpg" alt="Red Bull Energy Drink" loading="lazy">
+          <div class="rb-name">Energy Drink</div>
+        </div>
+        <div class="redbull-card">
+          <img src="https://sistersalanya.wordpress.com/wp-content/uploads/2025/07/img-20250724-wa0030.jpg" alt="Red Bull SugarFree" loading="lazy">
+          <div class="rb-name">SugarFree</div>
+        </div>
+        <div class="redbull-card">
+          <img src="https://sistersalanya.wordpress.com/wp-content/uploads/2025/07/img-20250724-wa0038.jpg" alt="Red Bull Blue Edition" loading="lazy">
+          <div class="rb-name">Blue Edition</div>
+        </div>
+        <div class="redbull-card">
+          <img src="https://sistersalanya.wordpress.com/wp-content/uploads/2025/07/img-20250724-wa0033.jpg" alt="Red Bull Yellow Edition" loading="lazy">
+          <div class="rb-name">Yellow Edition</div>
+        </div>
+        <div class="redbull-card">
+          <img src="https://sistersalanya.wordpress.com/wp-content/uploads/2025/07/img-20250724-wa0031.jpg" alt="Red Bull Red Edition" loading="lazy">
+          <div class="rb-name">Red Edition</div>
+        </div>
+        <div class="redbull-card">
+          <img src="https://sistersalanya.wordpress.com/wp-content/uploads/2025/07/img-20250724-wa0034.jpg" alt="Red Bull Peach Edition" loading="lazy">
+          <div class="rb-name">Peach Edition</div>
+        </div>
+        <div class="redbull-card">
+          <img src="https://sistersalanya.wordpress.com/wp-content/uploads/2025/07/img-20250724-wa0032.jpg" alt="Red Bull White Edition" loading="lazy">
+          <div class="rb-name">White Edition</div>
+        </div>
+        <div class="redbull-card">
+          <img src="https://sistersalanya.wordpress.com/wp-content/uploads/2025/07/img-20250724-wa0043.jpg" alt="Red Bull Pink Edition" loading="lazy">
+          <div class="rb-name">Pink Edition</div>
+        </div>
+      </div>
+      <p class="redbull-all-price">All flavours · ₺110</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INFO ═══ -->
+<section class="info-section">
+  <div class="info-grid">
+    <div class="info-block">
+      <h3>Find Us</h3>
+      <p>
+        Çarşı, İzzet Azakoğlu Cd. No:6<br>
+        07400 Alanya/Antalya, Türkiye
+      </p>
+      <a href="https://www.google.com/maps/search/?api=1&query=Çarşı+İzzet+Azakoğlu+Cd+No+6+Alanya+Antalya" target="_blank" class="map-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Open in Maps
+      </a>
+    </div>
+    <div class="info-block">
+      <h3>Hours</h3>
+      <table class="hours-table" id="hours-table">
+        <tr data-day="1"><td>Mon</td><td>11 am – 8 pm</td></tr>
+        <tr data-day="2"><td>Tue</td><td>10 am – 8 pm</td></tr>
+        <tr data-day="3"><td>Wed</td><td>10 am – 8 pm</td></tr>
+        <tr data-day="4"><td>Thu</td><td>10 am – 8 pm</td></tr>
+        <tr data-day="5"><td>Fri</td><td>10 am – 8 pm</td></tr>
+        <tr data-day="6"><td>Sat</td><td>10 am – 8 pm</td></tr>
+        <tr data-day="0"><td>Sun</td><td>10 am – 5 pm</td></tr>
+      </table>
+    </div>
+    <div class="info-block">
+      <h3>The Vibe</h3>
+      <div class="vibe-tags">
+        <span class="vibe-tag">☕ Great coffee</span>
+        <span class="vibe-tag">🍰 Great dessert</span>
+        <span class="vibe-tag">🐾 Pets welcome</span>
+        <span class="vibe-tag">💻 Laptop-friendly</span>
+        <span class="vibe-tag">📶 Free Wi-Fi</span>
+        <span class="vibe-tag">🪑 Outdoor seating</span>
+        <span class="vibe-tag">👩‍👩‍👧 Women-owned</span>
+      </div>
+    </div>
+    <div class="info-block">
+      <h3>Connect</h3>
+      <p>
+        <a href="https://www.instagram.com/sistersalanya/" target="_blank" class="instagram-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          @sistersalanya
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Sisters Alanya
+</footer>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Highlight today's hours
+  const today = new Date().getDay();
+  const todayRow = document.querySelector(`#hours-table tr[data-day="${today}"]`);
+  if (todayRow) todayRow.classList.add('today');
+</script>
+
+</body>
+</html>
