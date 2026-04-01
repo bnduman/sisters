@@ -524,6 +524,145 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── REVIEWS SECTION ── */
+  .reviews-section {
+    padding: 5rem 2rem 4rem;
+    background: var(--warm-white);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .reviews-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--espresso);
+    margin-bottom: 0.4rem;
+  }
+
+  .reviews-overall {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.88rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  .reviews-overall strong {
+    color: var(--espresso);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .stars { color: var(--gold); letter-spacing: 0.04em; }
+
+  .review-card {
+    display: none;
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    border-radius: 18px;
+    padding: 2rem 2.25rem 1.75rem;
+    text-align: left;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .review-card.active { display: block; }
+
+  .review-card-stars {
+    font-size: 0.85rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .review-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+
+  .review-text::before {
+    content: '\201C';
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    line-height: 0;
+    vertical-align: -1rem;
+    color: var(--terracotta);
+    opacity: 0.25;
+    margin-right: 0.15rem;
+    font-style: normal;
+  }
+
+  .review-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .review-author {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--espresso);
+  }
+
+  .review-date {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  .reviews-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .reviews-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sand);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .reviews-dot.active {
+    background: var(--terracotta);
+    transform: scale(1.4);
+  }
+
+  .reviews-gmaps {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 2rem;
+    font-size: 0.82rem;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .reviews-gmaps:hover { color: var(--terracotta); }
+
+  .review-loading {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+
   /* ── MOBILE ── */
   @media (max-width: 600px) {
     .hero { min-height: 55vh; padding: 3rem 1.5rem; }
@@ -712,6 +851,18 @@
   </div>
 </section>
 
+<!-- ═══ REVIEWS ═══ -->
+<section class="reviews-section">
+  <h2>What guests say</h2>
+  <div class="reviews-overall" id="reviews-overall"></div>
+  <div id="reviews-container"><div class="review-loading">Loading reviews…</div></div>
+  <div class="reviews-dots" id="reviews-dots"></div>
+  <a href="https://www.google.com/maps/place/?q=place_id:ChIJGW_pUSSZ3BQRPNuyJRVOaVA" target="_blank" class="reviews-gmaps">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    See all reviews on Google Maps
+  </a>
+</section>
+
 <!-- ═══ INFO ═══ -->
 <section class="info-section">
   <div class="info-grid">
@@ -825,7 +976,102 @@
   document.querySelectorAll('.tab-btn').forEach((btn, i) => {
     btn.addEventListener('click', () => { currentTab = tabs.indexOf(btn.dataset.tab); });
   });
+
+  // ── REVIEWS CAROUSEL (Google Places) ──
+  let reviewTimer, activeReview = 0, reviewCards = [], reviewDots = [];
+
+  function esc(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function starsHTML(n) {
+    return '<span class="stars">' + '★'.repeat(n) + (n < 5 ? '☆'.repeat(5 - n) : '') + '</span>';
+  }
+
+  function showReview(i) {
+    if (!reviewCards.length) return;
+    reviewCards[activeReview].classList.remove('active');
+    reviewDots[activeReview].classList.remove('active');
+    activeReview = (i + reviewCards.length) % reviewCards.length;
+    reviewCards[activeReview].classList.add('active');
+    reviewDots[activeReview].classList.add('active');
+  }
+
+  function startReviews() {
+    clearInterval(reviewTimer);
+    if (reviewCards.length > 1) reviewTimer = setInterval(() => showReview(activeReview + 1), 4500);
+  }
+
+  function renderReviews(reviews, rating, total) {
+    const withText = reviews.filter(r => r.text && r.text.trim());
+    if (!withText.length) return;
+
+    document.getElementById('reviews-overall').innerHTML =
+      '<strong>' + rating.toFixed(1) + '</strong>' + starsHTML(Math.round(rating)) +
+      '<span>' + total.toLocaleString() + ' reviews on Google</span>';
+
+    const container = document.getElementById('reviews-container');
+    const dotsEl = document.getElementById('reviews-dots');
+    container.innerHTML = '';
+    dotsEl.innerHTML = '';
+
+    withText.forEach((r, i) => {
+      const card = document.createElement('div');
+      card.className = 'review-card' + (i === 0 ? ' active' : '');
+      card.innerHTML =
+        '<div class="review-card-stars">' + starsHTML(r.rating) + '</div>' +
+        '<p class="review-text">' + esc(r.text) + '</p>' +
+        '<div class="review-meta">' +
+          '<span class="review-author">' + esc(r.author_name) + '</span>' +
+          '<span class="review-date">' + esc(r.relative_time_description) + '</span>' +
+        '</div>';
+      container.appendChild(card);
+
+      const dot = document.createElement('button');
+      dot.className = 'reviews-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => { clearInterval(reviewTimer); showReview(i); startReviews(); });
+      dotsEl.appendChild(dot);
+    });
+
+    reviewCards = document.querySelectorAll('.review-card');
+    reviewDots = document.querySelectorAll('.reviews-dot');
+    activeReview = 0;
+    startReviews();
+  }
+
+  function initReviews() {
+    const CACHE_KEY = 'sisters_reviews';
+    const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+
+    try {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+      if (cached && Date.now() - cached.ts < CACHE_TTL) {
+        renderReviews(cached.reviews, cached.rating, cached.total);
+        return;
+      }
+    } catch (e) {}
+
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
+    service.getDetails(
+      { placeId: 'ChIJGW_pUSSZ3BQRPNuyJRVOaVA', fields: ['reviews', 'rating', 'user_ratings_total'] },
+      (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && place.reviews?.length) {
+          try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+              reviews: place.reviews, rating: place.rating,
+              total: place.user_ratings_total, ts: Date.now()
+            }));
+          } catch (e) {}
+          renderReviews(place.reviews, place.rating, place.user_ratings_total);
+        } else {
+          document.getElementById('reviews-container').innerHTML =
+            '<div class="review-loading">Reviews unavailable right now.</div>';
+        }
+      }
+    );
+  }
 </script>
 
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD58PEg0Zb15Uf0pRWiDpdKrIq_zvMIS8Y&libraries=places&callback=initReviews"></script>
 </body>
 </html>
