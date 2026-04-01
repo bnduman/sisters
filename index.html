@@ -601,19 +601,48 @@
   .review-meta {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.25rem;
+    gap: 0.75rem;
+  }
+
+  .review-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid var(--sand);
+    flex-shrink: 0;
+  }
+
+  .review-avatar-placeholder {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--sand-light);
+    border: 1.5px solid var(--sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-light);
+    flex-shrink: 0;
+  }
+
+  .review-meta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
   }
 
   .review-author {
     font-size: 0.88rem;
     font-weight: 500;
     color: var(--espresso);
+    line-height: 1.2;
   }
 
   .review-date {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--text-light);
     font-weight: 300;
   }
@@ -980,6 +1009,13 @@
   // ── REVIEWS CAROUSEL (Google Places) ──
   let reviewTimer, activeReview = 0, reviewCards = [], reviewDots = [];
 
+  function avatarFallback(el, initial) {
+    const div = document.createElement('div');
+    div.className = 'review-avatar-placeholder';
+    div.textContent = initial;
+    el.replaceWith(div);
+  }
+
   function esc(str) {
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
@@ -1018,12 +1054,19 @@
     withText.forEach((r, i) => {
       const card = document.createElement('div');
       card.className = 'review-card' + (i === 0 ? ' active' : '');
+      const initial = esc((r.author_name || '?').charAt(0).toUpperCase());
+      const avatarHTML = r.photo_uri
+        ? '<img class="review-avatar" src="' + esc(r.photo_uri) + '" alt="" loading="lazy" onerror="avatarFallback(this,\'' + initial + '\')">'
+        : '<div class="review-avatar-placeholder">' + initial + '</div>';
       card.innerHTML =
         '<div class="review-card-stars">' + starsHTML(r.rating) + '</div>' +
         '<p class="review-text">' + esc(r.text) + '</p>' +
         '<div class="review-meta">' +
-          '<span class="review-author">' + esc(r.author_name) + '</span>' +
-          '<span class="review-date">' + esc(r.relative_time_description) + '</span>' +
+          avatarHTML +
+          '<div class="review-meta-info">' +
+            '<span class="review-author">' + esc(r.author_name) + '</span>' +
+            '<span class="review-date">' + esc(r.relative_time_description) + '</span>' +
+          '</div>' +
         '</div>';
       container.appendChild(card);
 
@@ -1062,6 +1105,7 @@
       if (!data.reviews?.length) throw new Error(JSON.stringify(data));
       const reviews = data.reviews.map(r => ({
         author_name: r.authorAttribution?.displayName || 'Anonymous',
+        photo_uri: r.authorAttribution?.photoUri || '',
         rating: r.rating,
         text: r.text?.text || '',
         relative_time_description: r.relativePublishTimeDescription || ''
