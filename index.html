@@ -1041,7 +1041,7 @@
 
   function initReviews() {
     const CACHE_KEY = 'sisters_reviews';
-    const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+    const CACHE_TTL = 24 * 60 * 60 * 1000;
 
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
@@ -1051,27 +1051,37 @@
       }
     } catch (e) {}
 
-    const service = new google.maps.places.PlacesService(document.createElement('div'));
-    service.getDetails(
-      { placeId: 'ChIJGW_pUSSZ3BQRPNuyJRVOaVA', fields: ['reviews', 'rating', 'user_ratings_total'] },
-      (place, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK && place.reviews?.length) {
-          try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-              reviews: place.reviews, rating: place.rating,
-              total: place.user_ratings_total, ts: Date.now()
-            }));
-          } catch (e) {}
-          renderReviews(place.reviews, place.rating, place.user_ratings_total);
-        } else {
-          document.getElementById('reviews-container').innerHTML =
-            '<div class="review-loading">Reviews unavailable right now.</div>';
-        }
+    fetch('https://places.googleapis.com/v1/places/ChIJGW_pUSSZ3BQRPNuyJRVOaVA', {
+      headers: {
+        'X-Goog-Api-Key': 'AIzaSyD58PEg0Zb15Uf0pRWiDpdKrIq_zvMIS8Y',
+        'X-Goog-FieldMask': 'reviews,rating,userRatingCount'
       }
-    );
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (!data.reviews?.length) throw new Error(JSON.stringify(data));
+      const reviews = data.reviews.map(r => ({
+        author_name: r.authorAttribution?.displayName || 'Anonymous',
+        rating: r.rating,
+        text: r.text?.text || '',
+        relative_time_description: r.relativePublishTimeDescription || ''
+      }));
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          reviews, rating: data.rating, total: data.userRatingCount, ts: Date.now()
+        }));
+      } catch (e) {}
+      renderReviews(reviews, data.rating, data.userRatingCount);
+    })
+    .catch(err => {
+      console.error('Reviews fetch failed:', err);
+      document.getElementById('reviews-container').innerHTML =
+        '<div class="review-loading">Reviews unavailable right now.</div>';
+    });
   }
+
+  initReviews();
 </script>
 
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD58PEg0Zb15Uf0pRWiDpdKrIq_zvMIS8Y&libraries=places&callback=initReviews"></script>
 </body>
 </html>
