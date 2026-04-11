@@ -684,6 +684,129 @@
 
   .reviews-gmaps:hover { color: var(--terracotta); }
 
+  /* ── CONTACT SECTION ── */
+  .contact-section {
+    padding: 5rem 2rem;
+    background: var(--cream);
+  }
+
+  .contact-inner {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-inner h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--espresso);
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-sub {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--espresso-light);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--warm-white);
+    border: 1.5px solid var(--sand);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    width: 100%;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--terracotta-soft);
+  }
+
+  .cf-submit {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--espresso);
+    color: var(--cream);
+    border: none;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .cf-submit:hover { background: var(--terracotta); transform: translateY(-1px); }
+  .cf-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .cf-feedback {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  .cf-feedback.success {
+    background: var(--sage-light);
+    color: var(--espresso);
+  }
+
+  .cf-feedback.error {
+    background: #fbe8e8;
+    color: #8b2a2a;
+  }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .cf-submit { align-self: stretch; justify-content: center; }
+  }
+
   .review-loading {
     text-align: center;
     padding: 3rem 1rem;
@@ -890,6 +1013,40 @@
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
     See all reviews on Google Maps
   </a>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-section">
+  <div class="contact-inner">
+    <h2>Send us a message</h2>
+    <p class="contact-sub">We'll get back to you as soon as we can.</p>
+    <form class="contact-form" id="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" required placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" required placeholder="What's on your mind?" rows="5"></textarea>
+      </div>
+      <button type="submit" class="cf-submit">
+        Send message
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </form>
+    <div class="cf-feedback success" id="cf-success" hidden>
+      Message sent — thank you! We'll be in touch soon.
+    </div>
+    <div class="cf-feedback error" id="cf-error" hidden>
+      Something went wrong. Please try again or find us on Instagram.
+    </div>
+  </div>
 </section>
 
 <!-- ═══ INFO ═══ -->
@@ -1125,6 +1282,34 @@
   }
 
   initReviews();
+
+  // ── CONTACT FORM ──
+  document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.cf-submit');
+    const successEl = document.getElementById('cf-success');
+    const errorEl = document.getElementById('cf-error');
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    errorEl.hidden = true;
+
+    try {
+      const res = await fetch('https://formspree.io/f/mnjoelnn', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!res.ok) throw new Error();
+      form.hidden = true;
+      successEl.hidden = false;
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = 'Send message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+      errorEl.hidden = false;
+    }
+  });
 </script>
 
 </body>
