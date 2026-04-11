@@ -1021,6 +1021,7 @@
     <h2>Send us a message</h2>
     <p class="contact-sub">We'll get back to you as soon as we can.</p>
     <form class="contact-form" id="contact-form">
+      <input type="hidden" name="access_key" value="1304b639-376a-4cc9-b749-4f5ab57fbabe">
       <div class="form-row">
         <div class="form-group">
           <label for="cf-name">Name</label>
@@ -1296,7 +1297,7 @@
     errorEl.hidden = true;
 
     try {
-      const res = await fetch('https://formspree.io/f/mnjoelnn', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
