@@ -282,6 +282,28 @@
     margin-bottom: 4px;
   }
 
+  .item-desc {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-weight: 300;
+    font-style: italic;
+    margin: 0 0 0.55rem;
+    padding-bottom: 0.5rem;
+    max-width: 46ch;
+    border-bottom: 1px dotted var(--sand-light);
+  }
+  .menu-item:has(+ .item-desc) { border-bottom: none; padding-bottom: 0.15rem; }
+
+  .menu-category > h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin: 1.75rem 0 0.6rem;
+  }
+
   .item-price {
     font-weight: 500;
     font-size: 0.95rem;
@@ -851,9 +873,9 @@
   <p class="menu-subtitle">Prices in Turkish Lira</p>
 
   <div class="tabs">
-    <button class="tab-btn active" data-tab="coffee">Coffee</button>
+    <button class="tab-btn active" data-tab="coffee">Coffee &amp; Drinks</button>
     <button class="tab-btn" data-tab="eats">Eats</button>
-    <button class="tab-btn" data-tab="drinks">Wine & Cocktails</button>
+    <button class="tab-btn" data-tab="drinks">Wine &amp; Cocktails</button>
     <button class="tab-btn" data-tab="beer">Beer</button>
     <button class="tab-btn" data-tab="extras">Extras</button>
   </div>
@@ -864,19 +886,22 @@
       <h3><span class="icon">☕</span> Coffee</h3>
       <div class="menu-item"><span class="item-name">Espresso</span><span class="item-dots"></span><span class="item-price">150</span></div>
       <div class="menu-item"><span class="item-name">Double Espresso</span><span class="item-dots"></span><span class="item-price">180</span></div>
-      <div class="menu-item"><span class="item-name">Americano</span><span class="item-dots"></span><span class="item-price">180</span></div>
-      <div class="menu-item"><span class="item-name">Cortado</span><span class="item-dots"></span><span class="item-price">210</span></div>
-      <div class="menu-item"><span class="item-name">Latte</span><span class="item-dots"></span><span class="item-price">210</span></div>
-      <div class="menu-item"><span class="item-name">Cappuccino</span><span class="item-dots"></span><span class="item-price">210</span></div>
-      <div class="menu-item"><span class="item-name">Flat White</span><span class="item-dots"></span><span class="item-price">210</span></div>
-      <div class="menu-item"><span class="item-name">Latte Macchiato</span><span class="item-dots"></span><span class="item-price">210</span></div>
-      <div class="menu-item"><span class="item-name">Espresso Macchiato</span><span class="item-dots"></span><span class="item-price">180</span></div>
-      <div class="menu-item"><span class="item-name">Dark Chocolate Mocha <span class="item-note">(480ml)</span></span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">French Press <span class="item-note">(500ml)</span></span><span class="item-dots"></span><span class="item-price">210</span></div>
-      <div class="menu-item"><span class="item-name">Filter Coffee</span><span class="item-dots"></span><span class="item-price">160</span></div>
-      <div class="menu-item"><span class="item-name">Turkish Coffee</span><span class="item-dots"></span><span class="item-price">150</span></div>
-    </div>
-
+      <div class="menu-item"><span class="item-name">Americano</span><span class="item-dots"></span><span class="item-price">200</span></div>
+      <div class="menu-item"><span class="item-name">Cortado</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Latte</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Vanilla Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Chocolate Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Hazelnut Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Caramel Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Cappuccino</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Flat White</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Latte Macchiato</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Espresso Macchiato</span><span class="item-dots"></span><span class="item-price">200</span></div>
+      <div class="menu-item"><span class="item-name">Matcha Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Dark Chocolate Mocha <span class="item-note">(480ml)</span></span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <div class="menu-item"><span class="item-name">French Press <span class="item-note">(500ml)</span></span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Filter Coffee</span><span class="item-dots"></span><span class="item-price">180</span></div>
+      <div class="menu-item"><span class="item-name">Turkish Coffee</span><span class="item-dots"></span><span class="item-price">180</span></div>
     <div class="addons-banner">
       <h4>Add-ons</h4>
       <div class="addons-row">
@@ -886,52 +911,149 @@
         <span>Vegan Milk · 70</span>
       </div>
     </div>
+    </div>
+    <div class="menu-category">
+      <h3><span class="icon">🧊</span> Iced Coffee</h3>
+      <div class="menu-item"><span class="item-name">Espresso</span><span class="item-dots"></span><span class="item-price">150</span></div>
+      <div class="menu-item"><span class="item-name">Double Espresso</span><span class="item-dots"></span><span class="item-price">180</span></div>
+      <div class="menu-item"><span class="item-name">Americano</span><span class="item-dots"></span><span class="item-price">200</span></div>
+      <div class="menu-item"><span class="item-name">Latte</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Vanilla Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Chocolate Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Hazelnut Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Caramel Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Cappuccino</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Espresso Tonic</span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <div class="menu-item"><span class="item-name">Espresso Soda</span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <div class="menu-item"><span class="item-name">Alanya Boost</span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <p class="item-desc">Iced espresso with Red Bull.</p>
+      <div class="menu-item"><span class="item-name">Bumble Coffee</span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <p class="item-desc">Ice, fresh orange juice, double espresso.</p>
+      <div class="menu-item"><span class="item-name">Matcha Latte</span><span class="item-dots"></span><span class="item-price">270</span></div>
+      <div class="menu-item"><span class="item-name">Bailey’s Coffee</span><span class="item-dots"></span><span class="item-price">480</span></div>
+    </div>
+    <div class="menu-category">
+      <h3><span class="icon">🫖</span> Tea &amp; Hot Drinks</h3>
+      <p class="item-desc">All teas served in a teapot; available hot or iced.</p>
+      <div class="menu-item"><span class="item-name">Black Tea</span><span class="item-dots"></span><span class="item-price">95</span></div>
+      <div class="menu-item"><span class="item-name">Herbal Tea</span><span class="item-dots"></span><span class="item-price">190</span></div>
+      <div class="menu-item"><span class="item-name">Black Mulberry Tea</span><span class="item-dots"></span><span class="item-price">190</span></div>
+      <p class="item-desc">From the trees in our own garden.</p>
+      <div class="menu-item"><span class="item-name">Lemon Tea</span><span class="item-dots"></span><span class="item-price">190</span></div>
+      <div class="menu-item"><span class="item-name">Apple Tea</span><span class="item-dots"></span><span class="item-price">190</span></div>
+      <div class="menu-item"><span class="item-name">Orange Tea</span><span class="item-dots"></span><span class="item-price">190</span></div>
+      <div class="menu-item"><span class="item-name">Chai Tea Latte</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Hot Chocolate</span><span class="item-dots"></span><span class="item-price">290</span></div>
+      <div class="menu-item"><span class="item-name">Salep</span><span class="item-dots"></span><span class="item-price">280</span></div>
+      <p class="item-desc">Warm milk with orchid root and cinnamon.</p>
+    </div>
+    <div class="menu-category">
+      <h3><span class="icon">🥤</span> Cold Drinks</h3>
+      <div class="menu-item"><span class="item-name">Fresh Orange Juice</span><span class="item-dots"></span><span class="item-price">210</span></div>
+      <div class="menu-item"><span class="item-name">Homemade Lemonade</span><span class="item-dots"></span><span class="item-price">280</span></div>
+      <div class="menu-item"><span class="item-name">Strawberry Bubble Tea</span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <div class="menu-item"><span class="item-name">Milkshake</span><span class="item-dots"></span><span class="item-price">330</span></div>
+      <p class="item-desc">Chocolate, banana, blueberry, or strawberry.</p>
+      <div class="menu-item"><span class="item-name">Frappé</span><span class="item-dots"></span><span class="item-price">330</span></div>
+      <div class="menu-item"><span class="item-name">Sisters’ Frozen</span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <div class="menu-item"><span class="item-name">Chai Tea Latte</span><span class="item-dots"></span><span class="item-price">230</span></div>
+      <div class="menu-item"><span class="item-name">Churchill</span><span class="item-dots"></span><span class="item-price">180</span></div>
+      <div class="menu-item"><span class="item-name">Red Bull</span><span class="item-dots"></span><span class="item-price">150</span></div>
+      <div class="menu-item"><span class="item-name">Coca-Cola</span><span class="item-dots"></span><span class="item-price">120</span></div>
+      <div class="menu-item"><span class="item-name">Fanta</span><span class="item-dots"></span><span class="item-price">120</span></div>
+      <div class="menu-item"><span class="item-name">Sprite</span><span class="item-dots"></span><span class="item-price">120</span></div>
+      <div class="menu-item"><span class="item-name">Schweppes</span><span class="item-dots"></span><span class="item-price">150</span></div>
+      <div class="menu-item"><span class="item-name">Sparkling Water Damla / Pellegrino</span><span class="item-dots"></span><span class="item-price">50 / 100</span></div>
+      <div class="menu-item"><span class="item-name">Still Water 0.5L / 1L</span><span class="item-dots"></span><span class="item-price">30 / 50</span></div>
+    </div>
   </div>
 
   <!-- EATS -->
   <div class="menu-panel" id="eats">
     <div class="menu-category">
-      <h3><span class="icon">🍽</span> Eats</h3>
-      <div class="menu-item"><span class="item-name">Omelette</span><span class="item-dots"></span><span class="item-price">250</span></div>
-      <div class="menu-item"><span class="item-name">Sandwich with Vegetables</span><span class="item-dots"></span><span class="item-price">410</span></div>
-      <div class="menu-item"><span class="item-name">Sandwich with Cheese</span><span class="item-dots"></span><span class="item-price">440</span></div>
-      <div class="menu-item"><span class="item-name">Sandwich with Tuna Fish</span><span class="item-dots"></span><span class="item-price">460</span></div>
-      <div class="menu-item"><span class="item-name">Sandwich with Beef</span><span class="item-dots"></span><span class="item-price">480</span></div>
-      <div class="menu-item"><span class="item-name">Toasted Sandwich</span><span class="item-dots"></span><span class="item-price">350</span></div>
-      <div class="menu-item"><span class="item-name">French Fries</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Beer Bites</span><span class="item-dots"></span><span class="item-price">370</span></div>
-      <div class="menu-item"><span class="item-name">Turkish Ravioli</span><span class="item-dots"></span><span class="item-price">450</span></div>
-      <div class="menu-item"><span class="item-name">Vegetable Salad</span><span class="item-dots"></span><span class="item-price">390</span></div>
-      <div class="menu-item"><span class="item-name">Tuna Fish Salad</span><span class="item-dots"></span><span class="item-price">430</span></div>
+      <h3><span class="icon">🍽</span> Bites &amp; Sandwiches</h3>
+      <p class="item-desc">Served with complimentary fruit bowl or French fries.</p>
+      <h4>Hot Bites</h4>
+      <div class="menu-item"><span class="item-name">Plain Omelette</span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <div class="menu-item"><span class="item-name">Cheese Omelette</span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <div class="menu-item"><span class="item-name">Sucuk Omelette</span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <div class="menu-item"><span class="item-name">Vegetable Omelette</span><span class="item-dots"></span><span class="item-price">300</span></div>
+      <div class="menu-item"><span class="item-name">Sisters’ Omelette</span><span class="item-dots"></span><span class="item-price">410</span></div>
+      <div class="menu-item"><span class="item-name">French Fries</span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Mantı</span><span class="item-dots"></span><span class="item-price">450</span></div>
+      <p class="item-desc">Turkish ravioli with beef, garlic yoghurt.</p>
+      <h4>Sandwiches</h4>
+      <div class="menu-item"><span class="item-name">Vegetable</span><span class="item-dots"></span><span class="item-price">410</span></div>
+      <div class="menu-item"><span class="item-name">Cheese</span><span class="item-dots"></span><span class="item-price">440</span></div>
+      <div class="menu-item"><span class="item-name">Tuna</span><span class="item-dots"></span><span class="item-price">460</span></div>
+      <div class="menu-item"><span class="item-name">Beef</span><span class="item-dots"></span><span class="item-price">480</span></div>
+      <div class="menu-item"><span class="item-name">Toasted</span><span class="item-dots"></span><span class="item-price">350</span></div>
+      <p class="item-desc">Kaşar cheese, Turkish sausage, and egg.</p>
+      <h4>Salads &amp; Plates</h4>
+      <div class="menu-item"><span class="item-name">Garden Salad</span><span class="item-dots"></span><span class="item-price">390</span></div>
+      <div class="menu-item"><span class="item-name">Tuna Salad</span><span class="item-dots"></span><span class="item-price">430</span></div>
       <div class="menu-item"><span class="item-name">Fruit Salad</span><span class="item-dots"></span><span class="item-price">450</span></div>
-      <div class="menu-item"><span class="item-name">OH MY DOG Hotdog 🌭</span><span class="item-dots"></span><span class="item-price">250</span></div>
-      <div class="menu-item"><span class="item-name">Wine Plate</span><span class="item-dots"></span><span class="item-price">740</span></div>
+      <div class="menu-item"><span class="item-name">Beer Plate</span><span class="item-dots"></span><span class="item-price">440</span></div>
+      <p class="item-desc">Snacks to pair with beer.</p>
+      <div class="menu-item"><span class="item-name">Wine Plate</span><span class="item-dots"></span><span class="item-price">860</span></div>
+      <p class="item-desc">Aperitifs to pair with wine.</p>
+    </div>
+    <div class="menu-category">
+      <h3><span class="icon">🍰</span> Desserts</h3>
+      <div class="menu-item"><span class="item-name">Plain Croissant <span class="item-note">(90g)</span></span><span class="item-dots"></span><span class="item-price">240</span></div>
+      <div class="menu-item"><span class="item-name">Croissant w/ Fruit Purée <span class="item-note">(90g)</span></span><span class="item-dots"></span><span class="item-price">290</span></div>
+      <div class="menu-item"><span class="item-name">Croissant w/ Nutella <span class="item-note">(90g)</span></span><span class="item-dots"></span><span class="item-price">290</span></div>
+      <div class="menu-item"><span class="item-name">Lemon Cake</span><span class="item-dots"></span><span class="item-price">360</span></div>
+      <div class="menu-item"><span class="item-name">Chocolate Cake</span><span class="item-dots"></span><span class="item-price">430</span></div>
+      <div class="menu-item"><span class="item-name">Berrylicious Muffin</span><span class="item-dots"></span><span class="item-price">190</span></div>
+      <div class="menu-item"><span class="item-name">Biscoff Biscuit</span><span class="item-dots"></span><span class="item-price">30</span></div>
+      <h4>San Sebastian Cheesecake</h4>
+      <div class="menu-item"><span class="item-name">Plain</span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Berry</span><span class="item-dots"></span><span class="item-price">380</span></div>
+      <div class="menu-item"><span class="item-name">Chocolate</span><span class="item-dots"></span><span class="item-price">380</span></div>
+      <div class="menu-item"><span class="item-name">Chocolate &amp; Berry</span><span class="item-dots"></span><span class="item-price">430</span></div>
     </div>
   </div>
 
-  <!-- WINE & COCKTAILS -->
+  <!-- DRINKS -->
   <div class="menu-panel" id="drinks">
     <div class="menu-category">
-      <h3><span class="icon">🍷</span> Wine</h3>
-      <div class="menu-item"><span class="item-name">White Wine</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Rosé Wine</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Red Wine</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Champagne</span><span class="item-dots"></span><span class="item-price">4000</span></div>
+      <h3><span class="icon">🍷</span> Wine &amp; Cocktails</h3>
+      <h4>Wine by the Glass</h4>
+      <div class="menu-item"><span class="item-name">White Wine</span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Red Wine</span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Rosé Wine</span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Strawberry Cider</span><span class="item-dots"></span><span class="item-price">350</span></div>
+      <h4>Bottle</h4>
+      <div class="menu-item"><span class="item-name">Prosecco <span class="item-note">(750ml)</span></span><span class="item-dots"></span><span class="item-price">4000</span></div>
+      <h4>Sisters’ Cocktails</h4>
+      <div class="menu-item"><span class="item-name">Sweet Sisters’</span><span class="item-dots"></span><span class="item-price">750</span></div>
+      <p class="item-desc">Gin, vodka, vanilla syrup, peach purée.</p>
+      <div class="menu-item"><span class="item-name">Bitter Sisters’</span><span class="item-dots"></span><span class="item-price">750</span></div>
+      <p class="item-desc">Tequila, vodka, fresh lemon, lemon syrup.</p>
+      <div class="menu-item"><span class="item-name">Strawberry Daiquiri</span><span class="item-dots"></span><span class="item-price">580</span></div>
+      <p class="item-desc">Rum, strawberry.</p>
+      <div class="menu-item"><span class="item-name">Mojito</span><span class="item-dots"></span><span class="item-price">580</span></div>
+      <p class="item-desc">Rum, soda, mint.</p>
+      <div class="menu-item"><span class="item-name">Gin Fizz</span><span class="item-dots"></span><span class="item-price">580</span></div>
+      <p class="item-desc">Gin, soda, lemon.</p>
+      <div class="menu-item"><span class="item-name">Lynchburg Lemonade</span><span class="item-dots"></span><span class="item-price">580</span></div>
+      <p class="item-desc">Whiskey, lemon.</p>
+      <div class="menu-item"><span class="item-name">Espresso Martini</span><span class="item-dots"></span><span class="item-price">580</span></div>
+      <div class="menu-item"><span class="item-name">Apple Cider Cocktail</span><span class="item-dots"></span><span class="item-price">580</span></div>
+      <p class="item-desc">Vodka, cider, lemon.</p>
+      <div class="menu-item"><span class="item-name">Redbull Red Margarita</span><span class="item-dots"></span><span class="item-price">580</span></div>
+      <div class="menu-item"><span class="item-name">Jager Bomb</span><span class="item-dots"></span><span class="item-price">580</span></div>
     </div>
     <div class="menu-category">
       <h3><span class="icon">🥃</span> Spirits</h3>
-      <div class="menu-item"><span class="item-name">Vodka</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Baileys</span><span class="item-dots"></span><span class="item-price">320</span></div>
-      <div class="menu-item"><span class="item-name">Jägermeister</span><span class="item-dots"></span><span class="item-price">320</span></div>
-      <div class="menu-item"><span class="item-name">Gin</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Tequila</span><span class="item-dots"></span><span class="item-price">320</span></div>
-      <div class="menu-item"><span class="item-name">Rakı</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Whiskey</span><span class="item-dots"></span><span class="item-price">420</span></div>
-    </div>
-    <div class="menu-category">
-      <h3><span class="icon">🍹</span> Cocktails</h3>
-      <div class="menu-item"><span class="item-name">Sisters' Cocktail</span><span class="item-dots"></span><span class="item-price">530</span></div>
-      <div class="menu-item"><span class="item-name">Red Margarita</span><span class="item-dots"></span><span class="item-price">350</span></div>
+      <div class="menu-item"><span class="item-name">Vodka</span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Gin</span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Tequila</span><span class="item-dots"></span><span class="item-price">360</span></div>
+      <div class="menu-item"><span class="item-name">Whiskey</span><span class="item-dots"></span><span class="item-price">480</span></div>
+      <div class="menu-item"><span class="item-name">Rakı</span><span class="item-dots"></span><span class="item-price">360</span></div>
+      <div class="menu-item"><span class="item-name">Jägermeister</span><span class="item-dots"></span><span class="item-price">360</span></div>
+      <div class="menu-item"><span class="item-name">Baileys</span><span class="item-dots"></span><span class="item-price">360</span></div>
     </div>
   </div>
 
@@ -939,28 +1061,55 @@
   <div class="menu-panel" id="beer">
     <div class="menu-category">
       <h3><span class="icon">🍺</span> Beer</h3>
-      <div class="menu-item"><span class="item-name">Efes / Efes Malt</span><span class="item-dots"></span><span class="item-price">210</span></div>
-      <div class="menu-item"><span class="item-name">Tuborg Amber / Gold / Unfiltered</span><span class="item-dots"></span><span class="item-price">210</span></div>
-      <div class="menu-item"><span class="item-name">Bomonti Unfiltered / Carlsberg / Carlsberg Luna</span><span class="item-dots"></span><span class="item-price">230</span></div>
-      <div class="menu-item"><span class="item-name">Bud</span><span class="item-dots"></span><span class="item-price">230</span></div>
-      <div class="menu-item"><span class="item-name">Blanc / Becks / Sol / Corona</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Miller</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Desperados</span><span class="item-dots"></span><span class="item-price">280</span></div>
-      <div class="menu-item"><span class="item-name">Weihenstephaner</span><span class="item-dots"></span><span class="item-price">310</span></div>
+      <h4>Turkish</h4>
+      <div class="menu-item"><span class="item-name">Alcohol Free Beer</span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <div class="menu-item"><span class="item-name">Efes Tombul <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <div class="menu-item"><span class="item-name">Efes Malt <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <div class="menu-item"><span class="item-name">Bomonti Unfiltered <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">280</span></div>
+      <div class="menu-item"><span class="item-name">Tuborg <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <div class="menu-item"><span class="item-name">Tuborg Amber <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <div class="menu-item"><span class="item-name">Tuborg Unfiltered <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <h4>International Lagers</h4>
+      <div class="menu-item"><span class="item-name">Bud <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">280</span></div>
+      <div class="menu-item"><span class="item-name">Beck’s <span class="item-note">(33cl)</span></span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Corona <span class="item-note">(33cl)</span></span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Miller <span class="item-note">(33cl)</span></span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Sol <span class="item-note">(33cl)</span></span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <div class="menu-item"><span class="item-name">Carlsberg <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">280</span></div>
+      <div class="menu-item"><span class="item-name">Carlsberg Luna <span class="item-note">(50cl)</span></span><span class="item-dots"></span><span class="item-price">280</span></div>
+      <h4>Wheat &amp; Specialty</h4>
+      <div class="menu-item"><span class="item-name">Blanc <span class="item-note">(33cl)</span></span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <p class="item-desc">Belgian wheat beer.</p>
+      <div class="menu-item"><span class="item-name">Weihenstephaner <span class="item-note">(33cl)</span></span><span class="item-dots"></span><span class="item-price">350</span></div>
+      <p class="item-desc">German wheat beer.</p>
+      <div class="menu-item"><span class="item-name">Desperados <span class="item-note">(33cl)</span></span><span class="item-dots"></span><span class="item-price">320</span></div>
+      <p class="item-desc">Lager with tequila flavour.</p>
+      <h4>Dark</h4>
+      <div class="menu-item"><span class="item-name">Guinness <span class="item-note">(44cl)</span></span><span class="item-dots"></span><span class="item-price">400</span></div>
+      <p class="item-desc">Irish dry stout.</p>
+      <h4>Craft</h4>
       <div class="menu-item"><span class="item-name">Collection Beers</span><span class="item-dots"></span><span class="item-price">350</span></div>
-      <div class="menu-item"><span class="item-name">Guinness</span><span class="item-dots"></span><span class="item-price">350</span></div>
+      <p class="item-desc">Selected craft beers. Ask a Sister for specifics.</p>
       <div class="menu-item"><span class="item-name">Local Craft Beers</span><span class="item-dots"></span><span class="item-price">450</span></div>
+      <p class="item-desc">Turkish craft beers. Ask a Sister for specifics.</p>
     </div>
   </div>
 
   <!-- EXTRAS -->
   <div class="menu-panel" id="extras">
     <div class="menu-category">
-      <h3><span class="icon">🫖</span> Packed Products</h3>
-      <div class="menu-item"><span class="item-name">Illy Coffee <span class="item-note">(250g)</span></span><span class="item-dots"></span><span class="item-price">675</span></div>
-      <div class="menu-item"><span class="item-name">Illy Coffee <span class="item-note">(125g)</span></span><span class="item-dots"></span><span class="item-price">550</span></div>
-      <div class="menu-item"><span class="item-name">Mixed Herbal Tea</span><span class="item-dots"></span><span class="item-price">250</span></div>
-      <div class="menu-item"><span class="item-name">Single Herbal Tea</span><span class="item-dots"></span><span class="item-price">200</span></div>
+      <h3><span class="icon">🛍</span> Packed Products</h3>
+      <h4>Illy Coffee</h4>
+      <div class="menu-item"><span class="item-name">Illy Coffee <span class="item-note">(125g)</span></span><span class="item-dots"></span><span class="item-price">675</span></div>
+      <p class="item-desc">Classico or Decaffeinato.</p>
+      <div class="menu-item"><span class="item-name">Illy Coffee <span class="item-note">(250g)</span></span><span class="item-dots"></span><span class="item-price">825</span></div>
+      <p class="item-desc">Classico or Decaffeinato.</p>
+      <h4>Tea &amp; Sweets</h4>
+      <div class="menu-item"><span class="item-name">Mixed Herbal Tea</span><span class="item-dots"></span><span class="item-price">280</span></div>
+      <div class="menu-item"><span class="item-name">Single Variety Herbal Tea</span><span class="item-dots"></span><span class="item-price">250</span></div>
+      <p class="item-desc">Ask a Sister for specifics.</p>
+      <div class="menu-item"><span class="item-name">Candy (small)</span><span class="item-dots"></span><span class="item-price">80</span></div>
+      <div class="menu-item"><span class="item-name">Candy (large)</span><span class="item-dots"></span><span class="item-price">220</span></div>
     </div>
     <div class="menu-category redbull-showcase">
       <h3><span class="icon">⚡</span> Red Bull Selection</h3>
@@ -998,7 +1147,7 @@
           <div class="rb-name">Pink Edition</div>
         </div>
       </div>
-      <p class="redbull-all-price">All flavours · 110</p>
+      <p class="redbull-all-price">All flavours · 150</p>
     </div>
   </div>
 </section>
